@@ -1,0 +1,26 @@
+{
+  "name": "employeeapp",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "modernizr": "~2.8.1",
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-touch": "^1.6.4",
+    "angular-bootstrap": "^2.5.0",
+    "angular-toastr": "^2.1.1"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/*",
+        "assets/javascripts/bootstrap.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0"
+  }
+}
