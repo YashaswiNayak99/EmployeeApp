@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var employeeSchema = new mongoose.Schema({
     name: String,
-    email: String,
+    email: {type:String, unique:true},
     date: Date,
     department: String,
     gender: String,

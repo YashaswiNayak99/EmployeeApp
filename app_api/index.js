@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var ctrlEmployee = require('./controllers/employeeData');
 
-router.get('/employee', ctrlEmployee.getEmployees);
+router.get('/employees', ctrlEmployee.getEmployees);
 router.post('/employee', ctrlEmployee.addEmployee);
+router.delete('/employee', ctrlEmployee.removeEmployee);
 module.exports = router;

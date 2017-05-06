@@ -36,7 +36,17 @@
       </div>
         
       <div class="row editEmployee">
-          <p>{{firstName}}</p>
+          <div class="col-lg-12 ">
+              <table class="employeeTable table table-responsive table-hover table-bordered">
+                  <thead><th>Name</th><th>Email</th><th>Department</th><th>Gender</th><th>D.O.B</th><th>Age</th><th>Action</th></thead>
+                  <tbody>
+                      <tr ng-repeat="emp in allEmp">
+                          <td>{{emp.name}}</td><td>{{emp.email}}</td><td>{{emp.department}}</td><td>{{emp.gender}}</td><td>{{emp.date | date:'yyyy-MM-dd'}}</td><td>{{emp.age}}</td>
+                          <td><span class="actionbuttons label label-primary" ng-click='modalOpen(emp)'>Update</span>&nbsp;&nbsp;<span class="actionbuttons label label-warning" ng-click="removeEmployee(emp.email)">Delete</span></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
       </div>
     </div>
     
