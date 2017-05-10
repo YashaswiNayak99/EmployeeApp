@@ -2,6 +2,7 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
     var $ctrl = this;
     $ctrl.level = "ADD";
     $ctrl.formData = {
+        'id':'',
         'name': '',
         'email': '',
         'date': new Date(),
@@ -11,6 +12,7 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
 
     if(data!=undefined){
         $ctrl.updateData = data;
+        $ctrl.formData.id = $ctrl.updateData._id;
         $ctrl.formData.name = $ctrl.updateData.name;
         $ctrl.formData.email =$ctrl.updateData.email;
         $ctrl.formData.date = new Date($ctrl.updateData.date);
@@ -21,11 +23,11 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
     
 
     $ctrl.add = function () {
-        console.log($ctrl.formData);
+        //console.log($ctrl.formData);
         var checkValue = $ctrl.validationCheck();
         if (checkValue) {
             employeeService.addEmployee($ctrl.formData).then(function (data) {
-                console.log("EMP ADDED: ", data);
+                //console.log("EMP ADDED: ", data);
                 toastr.success("Employee Added");
                 $uibModalInstance.close();
             }).catch(function (err) {
@@ -38,19 +40,17 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
     };
 
     $ctrl.update = function () {
-        console.log($ctrl.formData);
+        //console.log($ctrl.formData);
         var checkValue = $ctrl.validationCheck();
-        if (checkValue) {
-            toastr.success("Employee Updated");
-            $uibModalInstance.close();
-//            employeeService.addEmployee($ctrl.formData).then(function (data) {
-//                console.log("EMP ADDED: ", data);
-//                toastr.success("Employee Added");
-//                $uibModalInstance.close();
-//            }).catch(function (err) {
-//                toastr.error("Employee Not Added");
-//                $uibModalInstance.close();
-//            })
+        if (checkValue) {                    
+            employeeService.updateEmployee($ctrl.formData).then(function (data) {
+                //console.log("EMP UPDATED: ", data);
+                toastr.success("Employee Updated");
+                $uibModalInstance.close();
+            }).catch(function (err) {
+                toastr.error("Employee Not Updated");
+                $uibModalInstance.close();
+            })
         } else {
             toastr.warning("Fill all values please.");
         }
@@ -67,7 +67,7 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
             return 1;
     }
 
-    console.log($ctrl.updateData);
+    //console.log($ctrl.updateData);
 });
 
 // Please note that the close and dismiss bindings are from $uibModalInstance.

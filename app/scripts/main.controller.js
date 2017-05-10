@@ -1,4 +1,4 @@
-console.log('\'Allo \'Allo!');
+//console.log('\'Allo \'Allo!');
 var app = angular.module("employeeApp", ['ngAnimate', 'ui.bootstrap', 'toastr']);
 
 app.config(function (toastrConfig) {
@@ -27,26 +27,38 @@ app.service("employeeService", function ($http, $q) {
     var getAllEmployees = function () {
         var deferred = $q.defer();
         $http.get(allEmpURL).then(function (emps) {
-            console.log("EMP LIST: ", emps);
+            //console.log("EMP LIST: ", emps);
             deferred.resolve(emps.data);
         }).catch(function (err) {
-            console.log("ERR ", err);
+            //console.log("ERR ", err);
             deferred.reject();
         });
         return deferred.promise;
     }
 
-    var addEmployee = function (empdata) {
-        var deferred = $q.defer();
-        $http.post(addEmpURL, empdata).then(function (emp) {
-            console.log("EMP : ", emp);
-            deferred.resolve(emp.data);
-        }).catch(function (err) {
-            console.log("ERR ", err);
-            deferred.reject();
-        });
-        return deferred.promise;
-    }
+        var addEmployee = function (empdata) {
+            var deferred = $q.defer();
+            $http.post(addEmpURL, empdata).then(function (emp) {
+                //console.log("EMP : ", emp);
+                deferred.resolve(emp.data);
+            }).catch(function (err) {
+                //console.log("ERR ", err);
+                deferred.reject();
+            });
+            return deferred.promise;
+        }
+        
+    var updateEmployee = function (empdata) {
+            var deferred = $q.defer();
+            $http.put(addEmpURL, empdata).then(function (emp) {
+                //console.log("EMP : ", emp);
+                deferred.resolve(emp);
+            }).catch(function (err) {
+                //console.log("ERR ", err);
+                deferred.reject();
+            });
+            return deferred.promise;
+        }
 
     var removeEmployee = function (emailId) {
         var deferred = $q.defer();
@@ -55,10 +67,10 @@ app.service("employeeService", function ($http, $q) {
                 email: emailId
             }
         }).then(function (emp) {
-            console.log("EMP : ", emp);
+            //console.log("EMP : ", emp);
             deferred.resolve(emp.data);
         }).catch(function (err) {
-            console.log("ERR ", err);
+            //console.log("ERR ", err);
             deferred.reject();
         });
         return deferred.promise;
@@ -67,6 +79,7 @@ app.service("employeeService", function ($http, $q) {
     return {
         getAllEmployees: getAllEmployees,
         addEmployee: addEmployee,
+        updateEmployee: updateEmployee,
         removeEmployee: removeEmployee
     };
 });
@@ -93,11 +106,12 @@ app.controller("employeeController", function ($window, $scope, $uibModal, $log,
             }
         });
 
-        modalInstance.result.then(function () {
-            //$ctrl.selected = selectedItem;        
+        modalInstance.result.then(function (value) {    
+            //console.log("VALUE: ",value);
             $scope.reloadList();
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
+            $scope.reloadList();
         });
     };
 
@@ -105,30 +119,30 @@ app.controller("employeeController", function ($window, $scope, $uibModal, $log,
         empSvc.getAllEmployees().then(function (emplist) {
             $scope.allEmp = emplist;
         }).catch(function (err) {
-            console.log(err);
+            //console.log(err);
         });
     }
 
     $scope.removeEmployee = function (emailId) {
-        console.log("TO DELETE: ", emailId);
+        //console.log("TO DELETE: ", emailId);
         empSvc.removeEmployee(emailId).then(function (info) {
-            console.log(info);
+            //console.log(info);
             $scope.reloadList();
             toastr.success("Employee DELETED.");
         }).catch(function (err) {
-            console.log("ERR DEL", err);
+            //console.log("ERR DEL", err);
         })
     }
 
-    console.log("In COntroller....");
+    //console.log("In COntroller....");
 
     var init = function () {
-        console.log("in Init...")
+        //console.log("in Init...")
         empSvc.getAllEmployees().then(function (emplist) {
             $scope.allEmp = emplist;
-            console.log("ALL: ", $scope.allEmp);
+            //console.log("ALL: ", $scope.allEmp);
         }).catch(function (err) {
-            console.log(err);
+            //console.log(err);
         });
     }
 
