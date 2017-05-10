@@ -1,6 +1,6 @@
 angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModalInstance, toastr, employeeService, data) {
     var $ctrl = this;
-    $ctrl.level = "ADD";
+    $ctrl.level = 'ADD';
     $ctrl.formData = {
         'id':'',
         'name': '',
@@ -18,7 +18,7 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
         $ctrl.formData.date = new Date($ctrl.updateData.date);
         $ctrl.formData.gender = $ctrl.updateData.gender;
         $ctrl.formData.department = $ctrl.updateData.department;
-        $ctrl.level = "UPDATE";
+        $ctrl.level = 'UPDATE';
     }
     
 
@@ -28,14 +28,14 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
         if (checkValue) {
             employeeService.addEmployee($ctrl.formData).then(function (data) {
                 //console.log("EMP ADDED: ", data);
-                toastr.success("Employee Added");
+                toastr.success('Employee Added');
                 $uibModalInstance.close();
             }).catch(function (err) {
-                toastr.error("Employee Not Added");
+                toastr.error('Employee Not Added');
                 $uibModalInstance.close();
             })
         } else {
-            toastr.warning("Fill all values please.");
+            toastr.warning('Fill all values please.');
         }
     };
 
@@ -45,14 +45,14 @@ angular.module('employeeApp').controller('ModalInstanceCtrl', function ($uibModa
         if (checkValue) {                    
             employeeService.updateEmployee($ctrl.formData).then(function (data) {
                 //console.log("EMP UPDATED: ", data);
-                toastr.success("Employee Updated");
+                toastr.success('Employee Updated');
                 $uibModalInstance.close();
             }).catch(function (err) {
-                toastr.error("Employee Not Updated");
+                toastr.error('Employee Not Updated');
                 $uibModalInstance.close();
             })
         } else {
-            toastr.warning("Fill all values please.");
+            toastr.warning('Fill all values please.');
         }
     };
     

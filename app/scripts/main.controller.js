@@ -1,5 +1,5 @@
 //console.log('\'Allo \'Allo!');
-var app = angular.module("employeeApp", ['ngAnimate', 'ui.bootstrap', 'toastr']);
+var app = angular.module('employeeApp', ['ngAnimate', 'ui.bootstrap', 'toastr']);
 
 app.config(function (toastrConfig) {
     angular.extend(toastrConfig, {
@@ -19,7 +19,7 @@ app.config(function (toastrConfig) {
     });
 });
 
-app.service("employeeService", function ($http, $q) {
+app.service('employeeService', function ($http, $q) {
 
     var allEmpURL = 'http://localhost:8080/api/employees';
     var addEmpURL = 'http://localhost:8080/api/employee';
@@ -86,7 +86,7 @@ app.service("employeeService", function ($http, $q) {
     };
 });
 
-app.controller("employeeController", function ($window, $scope, $uibModal, $log, employeeService, toastr) {
+app.controller('employeeController', function ($window, $scope, $uibModal, $log, employeeService, toastr) {
     var $ctrl = this;
     var empSvc = employeeService;
     $scope.allEmp = [];
@@ -130,7 +130,7 @@ app.controller("employeeController", function ($window, $scope, $uibModal, $log,
         empSvc.removeEmployee(emailId).then(function (info) {
             //console.log(info);
             $scope.reloadList();
-            toastr.success("Employee DELETED.");
+            toastr.success('Employee DELETED.');
         }).catch(function (err) {
             //console.log("ERR DEL", err);
         })
