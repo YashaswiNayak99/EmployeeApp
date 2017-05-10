@@ -21,8 +21,10 @@ app.config(function (toastrConfig) {
 
 app.service("employeeService", function ($http, $q) {
 
-    var allEmpURL = 'http://localhost:3000/api/employees';
-    var addEmpURL = 'http://localhost:3000/api/employee';
+    var allEmpURL = 'http://localhost:8080/api/employees';
+    var addEmpURL = 'http://localhost:8080/api/employee';
+    
+    
 
     var getAllEmployees = function () {
         var deferred = $q.defer();
