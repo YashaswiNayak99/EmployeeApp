@@ -46,6 +46,6 @@ app.use(function(err, req, res, next) {
 });
 
 //module.exports = app;
-app.listen(8080,function(){
-  console.log('Listening on 8080...');
+app.listen(3000,function(){
+  console.log('Listening on 3000...');
 });

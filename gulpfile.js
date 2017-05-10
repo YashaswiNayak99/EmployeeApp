@@ -176,5 +176,3 @@ gulp.task('default', () => {
     runSequence(['clean', 'wiredep'], 'build', resolve);
   });
 });
-
-gulp.task('heroku:production', ['default']);
