@@ -18,7 +18,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "postinstall": "bower install && gulp default"
+    "postinstall": "bower install && gulp default",
+    "heroku-postbuild":"gulp"
   },
   "dependencies": {
     "babel-core": "^6.4.0",
